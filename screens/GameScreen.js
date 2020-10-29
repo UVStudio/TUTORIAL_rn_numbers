@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { View, Text, Button, Alert, StyleSheet } from 'react-native';
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
@@ -18,14 +18,26 @@ const GameScreen = (props) => {
   const [currentGuess, setCurrentGuess] = useState(
     generateRandomBetween(1, 100, props.userChoice)
   );
+  const [rounds, setRounds] = useState(0);
 
   const currentLow = useRef(1);
   const currentHigh = useRef(100);
+  //useRef survives component re-renders,
+  //so we have full control over its' value over different component life cycles.
+  //Also, saving a new value into an useRef hook does not re-render the component.
+
+  const { userChoice, onGameOver } = props;
+  //executes after component renders
+  useEffect(() => {
+    if (currentGuess === userChoice) {
+      onGameOver(rounds);
+    }
+  }, [currentGuess, userChoice, onGameOver]);
 
   const nextGuessHandler = (direction) => {
     if (
-      (direction === 'lower' && currentGuess < props.userChoice) ||
-      (direction === 'higher' && currentGuess > props.userChoice)
+      (direction === 'lower' && currentGuess < userChoice) ||
+      (direction === 'higher' && currentGuess > userChoice)
     ) {
       Alert.alert("Don't lie!", 'You know that this is wrong.', [
         { text: 'Sorry!', style: 'cancel' },
@@ -43,6 +55,8 @@ const GameScreen = (props) => {
       currentGuess
     );
     setCurrentGuess(nextNumber);
+    setRounds((curRounds) => curRounds + 1);
+    //setRounds((prevState) => prevState + 1);
   };
 
   return (

@@ -13,7 +13,8 @@ export default {
   bodyText: {
     fontSize: 16,
     color: 'black',
-    marginVertical: 3,
+    marginBottom: 10,
+    textAlign: 'center',
     fontFamily: 'open-sans',
   },
 };

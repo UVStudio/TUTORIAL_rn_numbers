@@ -13,7 +13,7 @@ import MainButton from '../components/MainButton';
 
 const GameOver = (props) => {
   const [availableDeviceWidth, setAvailableDeviceWidth] = useState(
-    Dimensions.get('window').width
+    Dimensions.get('window').width * 0.9
   );
 
   useEffect(() => {
@@ -30,9 +30,9 @@ const GameOver = (props) => {
 
   let imageContainerStyle = styles.imageContainer;
 
-  if (availableDeviceWidth < 350) {
-    imageContainerStyle = styles.imageContainerSmall;
-  }
+  // if (availableDeviceWidth < 350) {
+  //   imageContainerStyle = styles.imageContainerSmall;
+  // }
 
   return (
     <ScrollView>
@@ -68,15 +68,6 @@ const styles = StyleSheet.create({
     marginTop: Dimensions.get('window').height * 0.05,
   },
   imageContainer: {
-    width: Dimensions.get('window').width * 0.7,
-    height: Dimensions.get('window').width * 0.7,
-    borderRadius: Dimensions.get('window').width * 0.7 * 0.5,
-    borderWidth: 1,
-    borderColor: 'black',
-    overflow: 'hidden',
-    marginVertical: Dimensions.get('window').height * 0.025,
-  },
-  imageContainerSmall: {
     width: Dimensions.get('window').width * 0.8,
     height: Dimensions.get('window').width * 0.8,
     borderRadius: Dimensions.get('window').width * 0.8 * 0.5,
@@ -85,6 +76,15 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     marginVertical: Dimensions.get('window').height * 0.025,
   },
+  // imageContainerSmall: {
+  //   width: Dimensions.get('window').width * 0.4,
+  //   height: Dimensions.get('window').width * 0.4,
+  //   borderRadius: Dimensions.get('window').width * 0.4 * 0.5,
+  //   borderWidth: 1,
+  //   borderColor: 'black',
+  //   overflow: 'hidden',
+  //   marginVertical: Dimensions.get('window').height * 0.025,
+  // },
   image: {
     width: '100%',
     height: '100%',

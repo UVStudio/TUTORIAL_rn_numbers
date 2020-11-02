@@ -1,8 +1,15 @@
+import { Dimensions } from 'react-native';
+
 export default {
   title: {
     fontSize: 20,
     color: 'black',
     marginVertical: 10,
+    fontFamily: 'open-sans-bold',
+  },
+  landscapeTitle: {
+    fontSize: 20,
+    color: 'black',
     fontFamily: 'open-sans-bold',
   },
   subTitle: {
@@ -11,7 +18,7 @@ export default {
     fontFamily: 'open-sans-bold',
   },
   bodyText: {
-    fontSize: 16,
+    fontSize: Dimensions.get('window').height < 600 ? 14 : 16,
     color: 'black',
     marginBottom: 10,
     textAlign: 'center',
